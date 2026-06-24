@@ -228,8 +228,53 @@ export default function Dashboard() {
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1490818387583-1b5ba22111d5?auto=format&fit=crop&w=2000&q=80')" }} 
       />
       
-      {/* SIDEBAR */}
-      <aside className="w-full lg:w-80 shrink-0 flex flex-col relative z-20 glass-panel m-0 lg:m-6 lg:mr-0 overflow-y-auto bg-white border-b lg:border-b-0 border-slate-100 shadow-sm">
+      {/* MOBILE HEADER */}
+      <header className="flex lg:hidden items-center justify-between p-4 bg-white/80 backdrop-blur-md border-b border-slate-100 shrink-0 z-30 relative">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-xl bg-primary-600 flex items-center justify-center font-bold text-white shadow-sm">
+            <Activity size={18} />
+          </div>
+          <h2 className="text-xl font-black tracking-tighter text-slate-800">FitAI</h2>
+        </div>
+        <div className="flex items-center gap-3">
+          <div className="text-right hidden sm:block">
+            <p className="font-black text-slate-800 text-sm leading-tight">{profile.name}</p>
+            <p className="text-[10px] font-bold text-primary-500 uppercase tracking-widest">{profile.goal}</p>
+          </div>
+          <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center border border-slate-200">
+            <User size={18} className="text-slate-400" />
+          </div>
+        </div>
+      </header>
+
+      {/* MOBILE BOTTOM NAV */}
+      <nav className="flex lg:hidden fixed bottom-0 w-full bg-white border-t border-slate-100 pb-safe z-40 justify-around items-center px-2 py-2 shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
+        {[
+          { id: 'home', icon: Home, label: 'Dash' },
+          { id: 'analytics', icon: BarChart2, label: 'Stats' },
+          { id: 'workout', icon: Dumbbell, label: 'Start', special: true },
+          { id: 'diet', icon: Utensils, label: 'Diet' },
+          { id: 'guide', icon: BookOpen, label: 'Guide' }
+        ].map((item) => (
+          <button
+            key={item.id}
+            onClick={() => setActiveTab(item.id as any)}
+            className={`flex flex-col items-center gap-1 p-2 transition-all ${
+              item.special 
+              ? 'bg-primary-500 text-white shadow-lg -mt-8 w-14 h-14 justify-center rounded-full border-4 border-white'
+              : activeTab === item.id 
+                ? 'text-primary-600 scale-110' 
+                : 'text-slate-400 hover:text-slate-600'
+            }`}
+          >
+            <item.icon size={item.special ? 24 : 20} className={activeTab === item.id && !item.special ? "text-primary-500" : ""} />
+            {!item.special && <span className="text-[10px] font-bold">{item.label}</span>}
+          </button>
+        ))}
+      </nav>
+
+      {/* DESKTOP SIDEBAR */}
+      <aside className="hidden lg:flex w-80 shrink-0 flex-col relative z-20 glass-panel m-6 mr-0 overflow-y-auto bg-white border-slate-100 shadow-sm">
         <div className="p-8 flex items-center gap-4">
           <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-2xl bg-primary-600 flex items-center justify-center font-bold text-xl lg:text-2xl text-white shadow-[0_4px_15px_rgba(37,99,235,0.3)]">
             <Activity size={24} />
@@ -237,61 +282,7 @@ export default function Dashboard() {
           <h2 className="text-2xl lg:text-3xl font-black tracking-tighter text-slate-800">FitAI</h2>
         </div>
 
-        <nav className="flex-1 px-4 space-y-2 mt-4 hidden lg:block">
-          {[
-            { id: 'home', icon: Home, label: 'Dashboard' },
-            { id: 'analytics', icon: BarChart2, label: 'Analytics' },
-            { id: 'diet', icon: Utensils, label: 'Diet Plan' },
-            { id: 'guide', icon: BookOpen, label: 'Exercise Guide' },
-          ].map((item) => (
-            <button
-              key={item.id}
-              onClick={() => setActiveTab(item.id as any)}
-              className={`w-full flex items-center gap-4 px-6 py-4 rounded-2xl transition-all duration-300 font-bold text-lg ${
-                activeTab === item.id 
-                ? 'bg-primary-50 text-primary-600 shadow-sm border border-primary-100' 
-                : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50/50'
-              }`}
-            >
-              <item.icon size={24} className={activeTab === item.id ? "text-primary-500" : ""} />
-              {item.label}
-            </button>
-          ))}
-          
-          <div className="pt-8">
-            <button 
-              onClick={() => setActiveTab('workout')}
-              className="w-full glass-button flex justify-between items-center py-5 px-6"
-            >
-              <span className="flex items-center gap-3 text-lg"><Dumbbell size={24} /> Start Session</span>
-              <ChevronRight size={24} />
-            </button>
-          </div>
-        </nav>
-
-        {/* MOBILE HORIZONTAL NAV */}
-        <nav className="flex lg:hidden overflow-x-auto px-4 py-2 gap-2 hide-scrollbar">
-          {[
-            { id: 'home', icon: Home, label: 'Dash' },
-            { id: 'analytics', icon: BarChart2, label: 'Stats' },
-            { id: 'diet', icon: Utensils, label: 'Diet' },
-            { id: 'guide', icon: BookOpen, label: 'Guide' },
-            { id: 'workout', icon: Dumbbell, label: 'Start' }
-          ].map((item) => (
-            <button
-              key={item.id}
-              onClick={() => setActiveTab(item.id as any)}
-              className={`shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm transition-all ${
-                activeTab === item.id 
-                ? 'bg-primary-50 text-primary-600 shadow-sm border border-primary-100' 
-                : 'text-slate-500 hover:text-slate-800 bg-slate-50/50'
-              }`}
-            >
-              <item.icon size={18} className={activeTab === item.id ? "text-primary-500" : ""} />
-              {item.label}
-            </button>
-          ))}
-        </nav>
+        <nav className="flex-1 px-4 space-y-2 mt-4">
 
         <div className="p-6 m-4 mt-auto rounded-3xl bg-slate-50/50 border border-slate-100 flex items-center gap-4">
           <div className="w-12 h-12 rounded-full bg-white p-1 shadow-sm border border-slate-200">
@@ -307,8 +298,8 @@ export default function Dashboard() {
       </aside>
 
       {/* MAIN CONTENT */}
-      <main className="flex-1 relative overflow-y-auto w-full">
-        <div className="max-w-full lg:max-w-6xl mx-auto px-6 lg:px-10 py-8 lg:py-10 relative z-10">
+      <main className="flex-1 relative overflow-y-auto w-full pb-24 lg:pb-0">
+        <div className="max-w-full lg:max-w-6xl mx-auto px-4 md:px-6 lg:px-10 py-6 lg:py-10 relative z-10">
           
           <header className="flex justify-between items-end mb-12">
             <div>
@@ -726,15 +717,15 @@ function OnboardingWizard({ onComplete }: { onComplete: (data: any) => void }) {
       />
       
       <div className="w-full max-w-2xl my-auto">
-        <div className="mb-4 md:mb-10 text-center">
-          <div className="inline-flex items-center justify-center w-12 h-12 md:w-20 md:h-20 bg-white rounded-xl md:rounded-[2rem] shadow-sm border border-slate-100 text-primary-600 mb-3 md:mb-6">
-            <Activity size={24} className="md:w-9 md:h-9" strokeWidth={2.5} />
+        <div className="mb-4 lg:mb-10 text-center">
+          <div className="inline-flex items-center justify-center w-12 h-12 lg:w-20 lg:h-20 bg-white rounded-xl lg:rounded-[2rem] shadow-sm border border-slate-100 text-primary-600 mb-3 lg:mb-6">
+            <Activity size={24} className="lg:w-9 lg:h-9" strokeWidth={2.5} />
           </div>
-          <h1 className="text-2xl md:text-4xl font-black mb-1 md:mb-2 tracking-tight text-slate-800">Welcome to FitAI</h1>
-          <p className="text-slate-500 font-medium text-sm md:text-lg">Let's personalize your fitness journey.</p>
+          <h1 className="text-2xl lg:text-4xl font-black mb-1 lg:mb-2 tracking-tight text-slate-800">Welcome to FitAI</h1>
+          <p className="text-slate-500 font-medium text-sm lg:text-lg">Let's personalize your fitness journey.</p>
         </div>
 
-        <div className="glass-panel p-5 md:p-10 relative overflow-hidden bg-white border border-slate-100 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]">
+        <div className="glass-panel p-4 lg:p-10 relative overflow-hidden bg-white border border-slate-100 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]">
           
           {/* Progress Bar */}
           <div className="absolute top-0 left-0 w-full h-2 bg-slate-50">
@@ -743,34 +734,34 @@ function OnboardingWizard({ onComplete }: { onComplete: (data: any) => void }) {
 
           <AnimatePresence mode="wait">
             {step === 1 && (
-              <motion.div key="step1" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.3 }} className="space-y-4 md:space-y-6 mt-2 md:mt-4 text-center">
-                <h2 className="text-xl md:text-3xl font-black mb-4 md:mb-8 text-slate-800">What's your name?</h2>
+              <motion.div key="step1" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.3 }} className="space-y-4 lg:space-y-6 mt-2 lg:mt-4 text-center">
+                <h2 className="text-xl lg:text-3xl font-black mb-3 lg:mb-8 text-slate-800">What's your name?</h2>
                 <div className="max-w-xs mx-auto">
-                  <input autoFocus value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} onKeyDown={e => e.key === 'Enter' && formData.name && nextStep()} placeholder="e.g. Alex" className="w-full glass-input bg-slate-50 shadow-inner text-center text-lg md:text-2xl font-bold py-3 md:py-6" />
+                  <input autoFocus value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} onKeyDown={e => e.key === 'Enter' && formData.name && nextStep()} placeholder="e.g. Alex" className="w-full glass-input bg-slate-50 shadow-inner text-center text-base lg:text-2xl font-bold py-3 lg:py-6" />
                 </div>
-                <button disabled={!formData.name} onClick={nextStep} className="w-full max-w-xs mx-auto glass-button py-3 md:py-5 mt-4 md:mt-8 disabled:opacity-50 disabled:cursor-not-allowed">Continue</button>
+                <button disabled={!formData.name} onClick={nextStep} className="w-full max-w-xs mx-auto glass-button py-3 lg:py-5 mt-4 lg:mt-8 disabled:opacity-50 disabled:cursor-not-allowed text-sm lg:text-base">Continue</button>
               </motion.div>
             )}
 
             {step === 2 && (
-              <motion.div key="step2" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.3 }} className="space-y-3 md:space-y-6 mt-2 md:mt-4">
-                <h2 className="text-xl md:text-3xl font-black mb-3 md:mb-8 text-slate-800 text-center">Your Body Metrics</h2>
-                <div className="grid grid-cols-2 gap-3 md:gap-6 max-w-md mx-auto">
+              <motion.div key="step2" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.3 }} className="space-y-3 lg:space-y-6 mt-2 lg:mt-4">
+                <h2 className="text-xl lg:text-3xl font-black mb-3 lg:mb-8 text-slate-800 text-center">Your Body Metrics</h2>
+                <div className="grid grid-cols-2 gap-3 lg:gap-6 max-w-md mx-auto">
                   <div>
-                    <label className="text-[10px] md:text-xs font-bold text-slate-400 tracking-widest uppercase mb-1 md:mb-2 block text-center">Weight (kg)</label>
-                    <input type="number" value={formData.weight} onChange={e => setFormData({...formData, weight: e.target.value})} className="w-full glass-input bg-slate-50 text-center text-base md:text-xl font-bold py-2 md:py-4" />
+                    <label className="text-[10px] lg:text-xs font-bold text-slate-400 tracking-widest uppercase mb-1 lg:mb-2 block text-center">Weight (kg)</label>
+                    <input type="number" value={formData.weight} onChange={e => setFormData({...formData, weight: e.target.value})} className="w-full glass-input bg-slate-50 text-center text-sm lg:text-xl font-bold py-2 lg:py-4" />
                   </div>
                   <div>
-                    <label className="text-[10px] md:text-xs font-bold text-slate-400 tracking-widest uppercase mb-1 md:mb-2 block text-center">Height (cm)</label>
-                    <input type="number" value={formData.height} onChange={e => setFormData({...formData, height: e.target.value})} className="w-full glass-input bg-slate-50 text-center text-base md:text-xl font-bold py-2 md:py-4" />
+                    <label className="text-[10px] lg:text-xs font-bold text-slate-400 tracking-widest uppercase mb-1 lg:mb-2 block text-center">Height (cm)</label>
+                    <input type="number" value={formData.height} onChange={e => setFormData({...formData, height: e.target.value})} className="w-full glass-input bg-slate-50 text-center text-sm lg:text-xl font-bold py-2 lg:py-4" />
                   </div>
                   <div className="col-span-2">
-                    <label className="text-[10px] md:text-xs font-bold text-slate-400 tracking-widest uppercase mb-1 md:mb-2 block text-center">Age</label>
-                    <input type="number" value={formData.age} onChange={e => setFormData({...formData, age: e.target.value})} className="w-full glass-input bg-slate-50 text-center text-base md:text-xl font-bold py-2 md:py-4" />
+                    <label className="text-[10px] lg:text-xs font-bold text-slate-400 tracking-widest uppercase mb-1 lg:mb-2 block text-center">Age</label>
+                    <input type="number" value={formData.age} onChange={e => setFormData({...formData, age: e.target.value})} className="w-full glass-input bg-slate-50 text-center text-sm lg:text-xl font-bold py-2 lg:py-4" />
                   </div>
                 </div>
-                <div className="flex justify-center pt-4 md:pt-6 flex-col items-center gap-3 md:gap-4">
-                  {error && <p className="text-red-500 font-bold text-[11px] md:text-sm bg-red-50 border border-red-100 px-3 md:px-4 py-1.5 md:py-2 rounded-xl w-full max-w-md text-center animate-pulse">{error}</p>}
+                <div className="flex justify-center pt-4 lg:pt-6 flex-col items-center gap-3 lg:gap-4">
+                  {error && <p className="text-red-500 font-bold text-[11px] lg:text-sm bg-red-50 border border-red-100 px-3 lg:px-4 py-1.5 lg:py-2 rounded-xl w-full max-w-md text-center animate-pulse">{error}</p>}
                   <button disabled={!formData.weight || !formData.height || !formData.age} onClick={() => {
                     const a = Number(formData.age);
                     const h = Number(formData.height);
@@ -796,7 +787,7 @@ function OnboardingWizard({ onComplete }: { onComplete: (data: any) => void }) {
                     
                     setError('');
                     finish();
-                  }} className="w-full max-w-md glass-button py-3 md:py-5 text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed">Generate My Plan</button>
+                  }} className="w-full max-w-md glass-button py-3 lg:py-5 text-sm lg:text-base disabled:opacity-50 disabled:cursor-not-allowed">Generate My Plan</button>
                 </div>
               </motion.div>
             )}
