@@ -229,12 +229,12 @@ export default function Dashboard() {
       />
       
       {/* SIDEBAR */}
-      <aside className="w-80 flex flex-col relative z-20 glass-panel m-6 mr-0 overflow-hidden bg-white border-slate-100 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]">
+      <aside className="w-64 lg:w-80 shrink-0 flex flex-col relative z-20 glass-panel m-4 lg:m-6 mr-0 overflow-y-auto bg-white border-slate-100 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]">
         <div className="p-8 flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-primary-600 flex items-center justify-center font-bold text-2xl text-white shadow-[0_4px_15px_rgba(37,99,235,0.3)]">
+          <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-2xl bg-primary-600 flex items-center justify-center font-bold text-xl lg:text-2xl text-white shadow-[0_4px_15px_rgba(37,99,235,0.3)]">
             <Activity size={24} />
           </div>
-          <h2 className="text-3xl font-black tracking-tighter text-slate-800">FitAI</h2>
+          <h2 className="text-2xl lg:text-3xl font-black tracking-tighter text-slate-800">FitAI</h2>
         </div>
 
         <nav className="flex-1 px-4 space-y-2 mt-4">
@@ -276,22 +276,22 @@ export default function Dashboard() {
             </div>
           </div>
           <div>
-            <p className="font-black text-slate-800 text-xl leading-tight">{profile.name}</p>
-            <p className="text-base font-bold text-primary-500">{profile.goal}</p>
+            <p className="font-black text-slate-800 text-lg lg:text-xl leading-tight">{profile.name}</p>
+            <p className="text-sm lg:text-base font-bold text-primary-500">{profile.goal}</p>
           </div>
         </div>
       </aside>
 
       {/* MAIN CONTENT */}
-      <main className="flex-1 relative overflow-y-auto">
-        <div className="max-w-6xl mx-auto px-10 py-10 relative z-10">
+      <main className="flex-1 relative overflow-y-auto w-full">
+        <div className="max-w-full lg:max-w-6xl mx-auto px-6 lg:px-10 py-8 lg:py-10 relative z-10">
           
           <header className="flex justify-between items-end mb-12">
             <div>
-              <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-6xl font-black mb-4 tracking-tight text-slate-800 drop-shadow-sm">
+              <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl lg:text-6xl font-black mb-2 lg:mb-4 tracking-tight text-slate-800 drop-shadow-sm">
                 Welcome back, <span className="text-primary-600">{profile.name}</span>
               </motion.h1>
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }} className="text-slate-600 text-2xl font-bold">
+              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }} className="text-slate-600 text-xl lg:text-2xl font-bold">
                 Your personalized wellness plan for today is ready.
               </motion.p>
             </div>
