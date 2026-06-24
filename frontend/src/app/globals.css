@@ -17,6 +17,10 @@
   --color-slate-50: #f8fafc;
 }
 
+html {
+  font-size: 75%;
+}
+
 body {
   background-color: var(--color-slate-50);
   color: var(--color-slate-800);
@@ -26,13 +30,13 @@ body {
 
 /* Light Mode Premium iOS Utilities */
 .glass-panel {
-  @apply bg-white border border-slate-100 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)];
+  @apply bg-white border border-slate-100 rounded-[2.5rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)];
 }
 
 .glass-button {
-  @apply bg-primary-600 hover:bg-primary-700 text-white font-bold shadow-[0_8px_20px_rgba(37,99,235,0.25)] hover:shadow-[0_10px_25px_rgba(37,99,235,0.4)] transition-all duration-300 transform hover:-translate-y-1;
+  @apply bg-primary-600 hover:bg-primary-700 text-white font-bold rounded-2xl shadow-[0_8px_20px_rgba(37,99,235,0.25)] hover:shadow-[0_10px_25px_rgba(37,99,235,0.4)] transition-all duration-300 transform hover:-translate-y-1;
 }
 
 .glass-input {
-  @apply bg-slate-50 border-2 border-slate-100 focus:border-primary-500 focus:bg-white outline-none transition-all duration-300 text-slate-800 placeholder:text-slate-400 shadow-sm focus:shadow-[0_0_20px_rgba(37,99,235,0.1)];
+  @apply bg-slate-50 border-2 border-slate-100 focus:border-primary-500 focus:bg-white rounded-2xl p-5 text-lg outline-none transition-all duration-300 text-slate-800 placeholder:text-slate-400 shadow-sm focus:shadow-[0_0_20px_rgba(37,99,235,0.1)];
 }
