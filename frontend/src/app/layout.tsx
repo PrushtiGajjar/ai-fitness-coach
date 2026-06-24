@@ -13,6 +13,14 @@ export const metadata: Metadata = {
   description: "Next-generation AI fitness tracking with vision.",
 };
 
+import type { Viewport } from "next";
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
