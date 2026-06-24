@@ -746,52 +746,52 @@ function OnboardingWizard({ onComplete }: { onComplete: (data: any) => void }) {
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1490818387583-1b5ba22111d5?auto=format&fit=crop&w=2000&q=80')" }} 
       />
       
-      <div className="w-full max-w-sm my-auto flex flex-col justify-center">
-        <div className="mb-4 text-center">
-          <div className="inline-flex items-center justify-center w-12 h-12 bg-white rounded-2xl shadow-sm border border-slate-100 text-primary-600 mb-3">
-            <Activity size={24} strokeWidth={2.5} />
+      <div className="w-full max-w-2xl my-auto">
+        <div className="mb-4 lg:mb-10 text-center">
+          <div className="inline-flex items-center justify-center w-12 h-12 lg:w-20 lg:h-20 bg-white rounded-xl lg:rounded-[2rem] shadow-sm border border-slate-100 text-primary-600 mb-3 lg:mb-6">
+            <Activity size={24} className="lg:w-9 lg:h-9" strokeWidth={2.5} />
           </div>
-          <h1 className="text-xl md:text-2xl font-black mb-1 tracking-tight text-slate-800">Welcome to FitAI</h1>
-          <p className="text-slate-500 font-medium text-xs md:text-sm">Let's personalize your fitness journey.</p>
+          <h1 className="text-2xl lg:text-4xl font-black mb-1 lg:mb-2 tracking-tight text-slate-800">Welcome to FitAI</h1>
+          <p className="text-slate-500 font-medium text-sm lg:text-lg">Let's personalize your fitness journey.</p>
         </div>
 
-        <div className="glass-panel p-5 relative overflow-hidden bg-white border border-slate-100 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] rounded-3xl">
+        <div className="glass-panel p-4 lg:p-10 relative overflow-hidden bg-white border border-slate-100 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] rounded-3xl">
           
           {/* Progress Bar */}
-          <div className="absolute top-0 left-0 w-full h-1.5 bg-slate-50">
+          <div className="absolute top-0 left-0 w-full h-2 bg-slate-50">
             <motion.div className="h-full bg-primary-500" initial={{ width: "0%" }} animate={{ width: `${(step/2)*100}%` }} transition={{ ease: "easeInOut", duration: 0.5 }} />
           </div>
 
           <AnimatePresence mode="wait">
             {step === 1 && (
-              <motion.div key="step1" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.3 }} className="space-y-3 mt-3 text-center">
-                <h2 className="text-lg md:text-xl font-black mb-3 text-slate-800">What's your name?</h2>
-                <div className="mx-auto">
-                  <input autoFocus value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} onKeyDown={e => e.key === 'Enter' && formData.name && nextStep()} placeholder="e.g. Alex" className="w-full glass-input bg-slate-50 shadow-inner text-center text-base md:text-lg font-bold py-2.5 md:py-3 rounded-xl" />
+              <motion.div key="step1" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.3 }} className="space-y-4 lg:space-y-6 mt-2 lg:mt-4 text-center">
+                <h2 className="text-xl lg:text-3xl font-black mb-3 lg:mb-8 text-slate-800">What's your name?</h2>
+                <div className="max-w-xs mx-auto">
+                  <input autoFocus value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} onKeyDown={e => e.key === 'Enter' && formData.name && nextStep()} placeholder="e.g. Alex" className="w-full glass-input bg-slate-50 shadow-inner text-center text-base lg:text-2xl font-bold py-3 lg:py-6 rounded-xl lg:rounded-2xl" />
                 </div>
-                <button disabled={!formData.name} onClick={nextStep} className="w-full glass-button py-2.5 md:py-3 mt-5 disabled:opacity-50 disabled:cursor-not-allowed text-xs md:text-sm rounded-xl font-bold">Continue</button>
+                <button disabled={!formData.name} onClick={nextStep} className="w-full max-w-xs mx-auto glass-button py-3 lg:py-5 mt-4 lg:mt-8 disabled:opacity-50 disabled:cursor-not-allowed text-sm lg:text-base rounded-xl font-bold">Continue</button>
               </motion.div>
             )}
 
             {step === 2 && (
-              <motion.div key="step2" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.3 }} className="space-y-3 mt-3">
-                <h2 className="text-lg md:text-xl font-black mb-3 text-slate-800 text-center">Your Body Metrics</h2>
-                <div className="grid grid-cols-2 gap-3 mx-auto">
+              <motion.div key="step2" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.3 }} className="space-y-3 lg:space-y-6 mt-2 lg:mt-4">
+                <h2 className="text-xl lg:text-3xl font-black mb-3 lg:mb-8 text-slate-800 text-center">Your Body Metrics</h2>
+                <div className="grid grid-cols-2 gap-3 lg:gap-6 max-w-md mx-auto">
                   <div>
-                    <label className="text-[9px] md:text-[10px] font-bold text-slate-400 tracking-widest uppercase mb-1 block text-center">Weight (kg)</label>
-                    <input type="number" value={formData.weight} onChange={e => setFormData({...formData, weight: e.target.value})} className="w-full glass-input bg-slate-50 text-center text-sm md:text-base font-bold py-2 md:py-2.5 rounded-xl" />
+                    <label className="text-[10px] lg:text-xs font-bold text-slate-400 tracking-widest uppercase mb-1 lg:mb-2 block text-center">Weight (kg)</label>
+                    <input type="number" value={formData.weight} onChange={e => setFormData({...formData, weight: e.target.value})} className="w-full glass-input bg-slate-50 text-center text-sm lg:text-xl font-bold py-2 lg:py-4 rounded-xl lg:rounded-2xl" />
                   </div>
                   <div>
-                    <label className="text-[9px] md:text-[10px] font-bold text-slate-400 tracking-widest uppercase mb-1 block text-center">Height (cm)</label>
-                    <input type="number" value={formData.height} onChange={e => setFormData({...formData, height: e.target.value})} className="w-full glass-input bg-slate-50 text-center text-sm md:text-base font-bold py-2 md:py-2.5 rounded-xl" />
+                    <label className="text-[10px] lg:text-xs font-bold text-slate-400 tracking-widest uppercase mb-1 lg:mb-2 block text-center">Height (cm)</label>
+                    <input type="number" value={formData.height} onChange={e => setFormData({...formData, height: e.target.value})} className="w-full glass-input bg-slate-50 text-center text-sm lg:text-xl font-bold py-2 lg:py-4 rounded-xl lg:rounded-2xl" />
                   </div>
                   <div className="col-span-2">
-                    <label className="text-[9px] md:text-[10px] font-bold text-slate-400 tracking-widest uppercase mb-1 block text-center">Age</label>
-                    <input type="number" value={formData.age} onChange={e => setFormData({...formData, age: e.target.value})} className="w-full glass-input bg-slate-50 text-center text-sm md:text-base font-bold py-2 md:py-2.5 rounded-xl" />
+                    <label className="text-[10px] lg:text-xs font-bold text-slate-400 tracking-widest uppercase mb-1 lg:mb-2 block text-center">Age</label>
+                    <input type="number" value={formData.age} onChange={e => setFormData({...formData, age: e.target.value})} className="w-full glass-input bg-slate-50 text-center text-sm lg:text-xl font-bold py-2 lg:py-4 rounded-xl lg:rounded-2xl" />
                   </div>
                 </div>
-                <div className="flex justify-center pt-3 flex-col items-center gap-2">
-                  {error && <p className="text-red-500 font-bold text-[10px] bg-red-50 border border-red-100 px-3 py-1.5 rounded-lg w-full text-center animate-pulse">{error}</p>}
+                <div className="flex justify-center pt-4 lg:pt-6 flex-col items-center gap-3 lg:gap-4">
+                  {error && <p className="text-red-500 font-bold text-[11px] lg:text-sm bg-red-50 border border-red-100 px-3 lg:px-4 py-1.5 lg:py-2 rounded-xl w-full max-w-md text-center animate-pulse">{error}</p>}
                   <button disabled={!formData.weight || !formData.height || !formData.age} onClick={() => {
                     const a = Number(formData.age);
                     const h = Number(formData.height);
@@ -817,7 +817,7 @@ function OnboardingWizard({ onComplete }: { onComplete: (data: any) => void }) {
                     
                     setError('');
                     finish();
-                  }} className="w-full glass-button py-2.5 md:py-3 text-xs md:text-sm rounded-xl font-bold disabled:opacity-50 disabled:cursor-not-allowed">Generate My Plan</button>
+                  }} className="w-full max-w-md glass-button py-3 lg:py-5 text-sm lg:text-base rounded-xl font-bold disabled:opacity-50 disabled:cursor-not-allowed">Generate My Plan</button>
                 </div>
               </motion.div>
             )}
