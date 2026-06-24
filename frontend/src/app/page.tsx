@@ -646,7 +646,7 @@ export default function Dashboard() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-10 right-10 w-[600px] max-w-[95vw] glass-panel bg-white overflow-hidden z-50 flex flex-col shadow-2xl rounded-3xl"
+            className="fixed bottom-0 right-0 md:bottom-10 md:right-10 w-full md:w-[600px] h-[85vh] md:h-auto md:max-w-[95vw] glass-panel bg-white overflow-hidden z-50 flex flex-col shadow-2xl md:rounded-3xl rounded-t-3xl rounded-b-none border-t border-slate-100"
           >
             <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50">
               <div className="flex items-center gap-4">
@@ -689,7 +689,7 @@ export default function Dashboard() {
           animate={{ scale: 1 }}
           whileHover={{ scale: 1.1 }}
           onClick={() => setChatOpen(true)}
-          className="fixed bottom-10 right-10 flex items-center gap-4 bg-primary-500 text-white p-5 rounded-full shadow-[0_10px_30px_rgba(59,130,246,0.6)] z-50 hover:bg-primary-600 transition-all group overflow-hidden border-4 border-white animate-bounce"
+          className="fixed bottom-6 right-6 md:bottom-10 md:right-10 flex items-center gap-2 md:gap-4 bg-primary-500 text-white p-4 md:p-5 rounded-full shadow-[0_10px_30px_rgba(59,130,246,0.6)] z-50 hover:bg-primary-600 transition-all group overflow-hidden border-4 border-white animate-bounce"
         >
           <div className="absolute inset-0 bg-white/20 animate-ping rounded-full"></div>
           <MessageSquare size={32} className="relative z-10" />
