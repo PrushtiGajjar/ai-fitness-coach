@@ -746,7 +746,7 @@ function OnboardingWizard({ onComplete }: { onComplete: (data: any) => void }) {
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1490818387583-1b5ba22111d5?auto=format&fit=crop&w=2000&q=80')" }} 
       />
       
-      <div className="w-full max-w-lg my-auto">
+      <div className="w-full lg:w-[75%] max-w-3xl my-auto mx-auto">
         <div className="mb-4 lg:mb-8 text-center">
           <div className="inline-flex items-center justify-center w-12 h-12 lg:w-16 lg:h-16 bg-white rounded-xl lg:rounded-2xl shadow-sm border border-slate-100 text-primary-600 mb-3 lg:mb-5">
             <Activity size={24} className="lg:w-8 lg:h-8" strokeWidth={2.5} />
