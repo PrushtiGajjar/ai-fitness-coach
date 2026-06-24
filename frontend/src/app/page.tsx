@@ -269,7 +269,7 @@ export default function Dashboard() {
       </nav>
 
       {/* DESKTOP SIDEBAR */}
-      <aside className="hidden lg:flex w-80 shrink-0 flex-col relative z-20 glass-panel m-6 mr-0 overflow-y-auto bg-white border-slate-100 shadow-sm">
+      <aside className="hidden lg:flex w-[25rem] shrink-0 flex-col relative z-20 glass-panel m-6 mr-0 overflow-y-auto bg-white border-slate-100 shadow-sm">
         <div className="p-8 flex items-center gap-4">
           <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-2xl bg-primary-600 flex items-center justify-center font-bold text-xl lg:text-2xl text-white shadow-[0_4px_15px_rgba(37,99,235,0.3)]">
             <Activity size={24} />
