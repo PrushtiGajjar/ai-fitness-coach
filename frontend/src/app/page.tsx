@@ -767,7 +767,7 @@ function OnboardingWizard({ onComplete }: { onComplete: (data: any) => void }) {
               <motion.div key="step1" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.3 }} className="space-y-3 mt-3 text-center">
                 <h2 className="text-lg lg:text-xl font-black mb-3 text-slate-800">What's your name?</h2>
                 <div className="max-w-[14rem] mx-auto">
-                  <input autoFocus value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} onKeyDown={e => e.key === 'Enter' && formData.name && nextStep()} placeholder="e.g. Alex" className="w-full glass-input bg-slate-50 shadow-inner text-center text-sm lg:text-lg font-bold py-2.5 rounded-lg" />
+                  <input autoFocus value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} onKeyDown={e => e.key === 'Enter' && formData.name && nextStep()} placeholder="e.g. Alex" className="w-full glass-input bg-slate-50 shadow-inner text-center text-sm lg:text-lg font-bold py-2.5 px-3 rounded-lg" />
                 </div>
                 <button disabled={!formData.name} onClick={nextStep} className="w-full max-w-[14rem] mx-auto glass-button py-2.5 mt-4 disabled:opacity-50 disabled:cursor-not-allowed text-xs lg:text-sm rounded-lg font-bold">Continue</button>
               </motion.div>
@@ -779,15 +779,15 @@ function OnboardingWizard({ onComplete }: { onComplete: (data: any) => void }) {
                 <div className="grid grid-cols-2 gap-2 max-w-[14rem] mx-auto">
                   <div>
                     <label className="text-[9px] font-bold text-slate-400 tracking-widest uppercase mb-1 block text-center">Weight (kg)</label>
-                    <input type="number" value={formData.weight} onChange={e => setFormData({...formData, weight: e.target.value})} className="w-full glass-input bg-slate-50 text-center text-xs lg:text-sm font-bold py-2.5 rounded-lg" />
+                    <input type="number" value={formData.weight} onChange={e => setFormData({...formData, weight: e.target.value})} className="w-full glass-input bg-slate-50 text-center text-xs lg:text-sm font-bold py-2.5 px-3 rounded-lg" />
                   </div>
                   <div>
                     <label className="text-[9px] font-bold text-slate-400 tracking-widest uppercase mb-1 block text-center">Height (cm)</label>
-                    <input type="number" value={formData.height} onChange={e => setFormData({...formData, height: e.target.value})} className="w-full glass-input bg-slate-50 text-center text-xs lg:text-sm font-bold py-2.5 rounded-lg" />
+                    <input type="number" value={formData.height} onChange={e => setFormData({...formData, height: e.target.value})} className="w-full glass-input bg-slate-50 text-center text-xs lg:text-sm font-bold py-2.5 px-3 rounded-lg" />
                   </div>
                   <div className="col-span-2">
                     <label className="text-[9px] font-bold text-slate-400 tracking-widest uppercase mb-1 block text-center">Age</label>
-                    <input type="number" value={formData.age} onChange={e => setFormData({...formData, age: e.target.value})} className="w-full glass-input bg-slate-50 text-center text-xs lg:text-sm font-bold py-2.5 rounded-lg" />
+                    <input type="number" value={formData.age} onChange={e => setFormData({...formData, age: e.target.value})} className="w-full glass-input bg-slate-50 text-center text-xs lg:text-sm font-bold py-2.5 px-3 rounded-lg" />
                   </div>
                 </div>
                 <div className="flex justify-center pt-3 flex-col items-center gap-2">
