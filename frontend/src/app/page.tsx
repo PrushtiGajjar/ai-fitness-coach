@@ -222,14 +222,14 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="flex h-screen overflow-hidden selection:bg-primary-500/30 bg-white relative z-0">
+    <div className="flex flex-col lg:flex-row h-screen overflow-hidden selection:bg-primary-500/30 bg-white relative z-0">
       <div 
         className="absolute inset-0 z-[-1] opacity-40 pointer-events-none bg-cover bg-center" 
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1490818387583-1b5ba22111d5?auto=format&fit=crop&w=2000&q=80')" }} 
       />
       
       {/* SIDEBAR */}
-      <aside className="w-64 lg:w-80 shrink-0 flex flex-col relative z-20 glass-panel m-4 lg:m-6 mr-0 overflow-y-auto bg-white border-slate-100 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]">
+      <aside className="w-full lg:w-80 shrink-0 flex flex-col relative z-20 glass-panel m-0 lg:m-6 lg:mr-0 overflow-y-auto bg-white border-b lg:border-b-0 border-slate-100 shadow-sm">
         <div className="p-8 flex items-center gap-4">
           <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-2xl bg-primary-600 flex items-center justify-center font-bold text-xl lg:text-2xl text-white shadow-[0_4px_15px_rgba(37,99,235,0.3)]">
             <Activity size={24} />
@@ -237,7 +237,7 @@ export default function Dashboard() {
           <h2 className="text-2xl lg:text-3xl font-black tracking-tighter text-slate-800">FitAI</h2>
         </div>
 
-        <nav className="flex-1 px-4 space-y-2 mt-4">
+        <nav className="flex-1 px-4 space-y-2 mt-4 hidden lg:block">
           {[
             { id: 'home', icon: Home, label: 'Dashboard' },
             { id: 'analytics', icon: BarChart2, label: 'Analytics' },
@@ -267,6 +267,30 @@ export default function Dashboard() {
               <ChevronRight size={24} />
             </button>
           </div>
+        </nav>
+
+        {/* MOBILE HORIZONTAL NAV */}
+        <nav className="flex lg:hidden overflow-x-auto px-4 py-2 gap-2 hide-scrollbar">
+          {[
+            { id: 'home', icon: Home, label: 'Dash' },
+            { id: 'analytics', icon: BarChart2, label: 'Stats' },
+            { id: 'diet', icon: Utensils, label: 'Diet' },
+            { id: 'guide', icon: BookOpen, label: 'Guide' },
+            { id: 'workout', icon: Dumbbell, label: 'Start' }
+          ].map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setActiveTab(item.id as any)}
+              className={`shrink-0 flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm transition-all ${
+                activeTab === item.id 
+                ? 'bg-primary-50 text-primary-600 shadow-sm border border-primary-100' 
+                : 'text-slate-500 hover:text-slate-800 bg-slate-50/50'
+              }`}
+            >
+              <item.icon size={18} className={activeTab === item.id ? "text-primary-500" : ""} />
+              {item.label}
+            </button>
+          ))}
         </nav>
 
         <div className="p-6 m-4 mt-auto rounded-3xl bg-slate-50/50 border border-slate-100 flex items-center gap-4">
@@ -412,16 +436,16 @@ export default function Dashboard() {
               {/* DIET PLAN HUB */}
               {activeTab === 'diet' && (
                 <motion.div key="diet" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-8">
-                  <div className="flex justify-between items-end mb-8">
+                  <div className="flex flex-col md:flex-row justify-between md:items-end gap-4 mb-8">
                     <div>
-                      <h3 className="text-4xl font-black mb-3 flex items-center gap-4 text-slate-800 drop-shadow-sm">
+                      <h3 className="text-3xl lg:text-4xl font-black mb-3 flex flex-wrap items-center gap-4 text-slate-800 drop-shadow-sm">
                         Today's Meal Plan
                         <span className="bg-emerald-100 text-emerald-600 px-4 py-1.5 text-sm rounded-full uppercase font-black border border-emerald-200">2,400 kcal Goal</span>
                       </h3>
-                      <p className="text-slate-600 text-xl font-bold">Structured nutrition to fuel your performance and recovery.</p>
+                      <p className="text-slate-600 text-lg lg:text-xl font-bold">Structured nutrition to fuel your performance.</p>
                     </div>
                     
-                    <button onClick={() => fileInputRef.current?.click()} className="bg-white border-2 border-slate-200 hover:border-primary-500 hover:text-primary-600 text-slate-600 px-6 py-3 rounded-2xl font-bold flex items-center gap-3 transition-all shadow-sm">
+                    <button onClick={() => fileInputRef.current?.click()} className="bg-white border-2 border-slate-200 hover:border-primary-500 hover:text-primary-600 text-slate-600 px-6 py-3 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all shadow-sm w-full md:w-auto">
                       <Camera size={20} />
                       Scan Food
                     </button>
