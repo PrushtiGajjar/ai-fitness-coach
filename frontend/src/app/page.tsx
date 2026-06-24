@@ -719,7 +719,7 @@ function OnboardingWizard({ onComplete }: { onComplete: (data: any) => void }) {
 
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center relative z-0 p-6 bg-white overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center relative z-0 p-6 bg-white overflow-y-auto">
       <div 
         className="absolute inset-0 z-[-1] opacity-40 pointer-events-none bg-cover bg-center" 
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1490818387583-1b5ba22111d5?auto=format&fit=crop&w=2000&q=80')" }} 
