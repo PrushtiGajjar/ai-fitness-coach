@@ -222,14 +222,14 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="flex flex-col lg:flex-row h-screen overflow-hidden selection:bg-primary-500/30 bg-white relative z-0">
+    <div className="flex flex-col lg:flex-row min-h-[100dvh] lg:h-screen lg:overflow-hidden selection:bg-primary-500/30 bg-white relative z-0">
       <div 
         className="absolute inset-0 z-[-1] opacity-40 pointer-events-none bg-cover bg-center" 
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1490818387583-1b5ba22111d5?auto=format&fit=crop&w=2000&q=80')" }} 
       />
       
       {/* MOBILE HEADER */}
-      <header className="flex lg:hidden items-center justify-between p-4 bg-white/80 backdrop-blur-md border-b border-slate-100 shrink-0 z-30 relative">
+      <header className="flex lg:hidden items-center justify-between p-4 bg-white/90 backdrop-blur-md border-b border-slate-100 shrink-0 sticky top-0 z-50">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-xl bg-primary-600 flex items-center justify-center font-bold text-white shadow-sm">
             <Activity size={18} />
@@ -328,7 +328,7 @@ export default function Dashboard() {
       </aside>
 
       {/* MAIN CONTENT */}
-      <main className="flex-1 relative overflow-y-auto w-full pb-24 lg:pb-0">
+      <main className="flex-1 relative lg:overflow-y-auto w-full pb-24 lg:pb-0">
         <div className="max-w-full lg:max-w-6xl mx-auto px-4 md:px-6 lg:px-10 py-6 lg:py-10 relative z-10">
           
           <header className="flex justify-between items-end mb-12">
