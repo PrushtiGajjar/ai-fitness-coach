@@ -283,6 +283,36 @@ export default function Dashboard() {
         </div>
 
         <nav className="flex-1 px-4 space-y-2 mt-4">
+          {[
+            { id: 'home', icon: Home, label: 'Dashboard' },
+            { id: 'analytics', icon: BarChart2, label: 'Analytics' },
+            { id: 'diet', icon: Utensils, label: 'Diet Plan' },
+            { id: 'guide', icon: BookOpen, label: 'Exercise Guide' },
+          ].map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setActiveTab(item.id as any)}
+              className={`w-full flex items-center gap-4 px-6 py-4 rounded-2xl transition-all duration-300 font-bold text-lg ${
+                activeTab === item.id 
+                ? 'bg-primary-50 text-primary-600 shadow-sm border border-primary-100' 
+                : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50/50'
+              }`}
+            >
+              <item.icon size={24} className={activeTab === item.id ? "text-primary-500" : ""} />
+              {item.label}
+            </button>
+          ))}
+          
+          <div className="pt-8">
+            <button 
+              onClick={() => setActiveTab('workout')}
+              className="w-full glass-button flex justify-between items-center py-5 px-6"
+            >
+              <span className="flex items-center gap-3 text-lg"><Dumbbell size={24} /> Start Session</span>
+              <ChevronRight size={24} />
+            </button>
+          </div>
+        </nav>
 
         <div className="p-6 m-4 mt-auto rounded-3xl bg-slate-50/50 border border-slate-100 flex items-center gap-4">
           <div className="w-12 h-12 rounded-full bg-white p-1 shadow-sm border border-slate-200">
