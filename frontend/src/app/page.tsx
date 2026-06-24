@@ -719,13 +719,13 @@ function OnboardingWizard({ onComplete }: { onComplete: (data: any) => void }) {
 
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center relative z-0 p-6 bg-white overflow-y-auto">
+    <div className="min-h-screen flex flex-col items-center py-12 px-6 bg-white overflow-y-auto relative z-0">
       <div 
         className="absolute inset-0 z-[-1] opacity-40 pointer-events-none bg-cover bg-center" 
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1490818387583-1b5ba22111d5?auto=format&fit=crop&w=2000&q=80')" }} 
       />
       
-      <div className="w-full max-w-2xl">
+      <div className="w-full max-w-2xl my-auto">
         <div className="mb-10 text-center">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-[2rem] shadow-sm border border-slate-100 text-primary-600 mb-6">
             <Activity size={36} strokeWidth={2.5} />
