@@ -705,11 +705,11 @@ export default function Dashboard() {
           animate={{ scale: 1 }}
           whileHover={{ scale: 1.1 }}
           onClick={() => setChatOpen(true)}
-          className="fixed bottom-6 right-6 md:bottom-10 md:right-10 flex items-center gap-2 md:gap-4 bg-primary-500 text-white p-4 md:p-5 rounded-full shadow-[0_10px_30px_rgba(59,130,246,0.6)] z-50 hover:bg-primary-600 transition-all group overflow-hidden border-4 border-white animate-bounce"
+          className="fixed bottom-24 right-4 lg:bottom-10 lg:right-10 flex items-center gap-2 lg:gap-4 bg-primary-500 text-white p-3 lg:p-5 rounded-full shadow-[0_10px_30px_rgba(59,130,246,0.6)] z-50 hover:bg-primary-600 transition-all group overflow-hidden border-4 border-white animate-bounce"
         >
           <div className="absolute inset-0 bg-white/20 animate-ping rounded-full"></div>
-          <MessageSquare size={32} className="relative z-10" />
-          <span className="font-black text-xl tracking-wide relative z-10 mr-2 drop-shadow-md">Ask Coach AI</span>
+          <MessageSquare size={28} className="relative z-10 lg:w-8 lg:h-8" />
+          <span className="font-black text-lg lg:text-xl tracking-wide relative z-10 mr-1 lg:mr-2 drop-shadow-md">Ask Coach AI</span>
         </motion.button>
       )}
 
