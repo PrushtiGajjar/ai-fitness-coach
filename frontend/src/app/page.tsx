@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import { Home, Activity, Dumbbell, MessageSquare, Target, User, BarChart2, CheckCircle2, Camera, Upload, ChevronRight, Leaf, BookOpen, Coffee, Sun, Moon, Apple, Utensils } from 'lucide-react';
+import { Home, Activity, Dumbbell, MessageSquare, Target, User, BarChart2, CheckCircle2, Camera, Upload, ChevronRight, Leaf, BookOpen, Coffee, Sun, Moon, Apple, Utensils, History, LogOut } from 'lucide-react';
 
 const LiveWorkout = dynamic(() => import('../components/LiveWorkout'), { ssr: false });
 
@@ -116,7 +116,7 @@ export default function Dashboard() {
   const [selectedExercise, setSelectedExercise] = useState<ExerciseObj | null>(null);
   const [plan, setPlan] = useState<any>(null);
   const [historyData, setHistoryData] = useState<any[]>([]);
-  const [activeTab, setActiveTab] = useState<'home' | 'workout' | 'analytics' | 'diet' | 'guide'>('home');
+  const [activeTab, setActiveTab] = useState<'home' | 'workout' | 'analytics' | 'diet' | 'guide' | 'profile'>('home');
   const [chatOpen, setChatOpen] = useState(false);
   const [messages, setMessages] = useState<{sender: string, text: string}[]>([
     {sender: "AI", text: "Welcome to your health dashboard. How can I help you today?"}
@@ -236,9 +236,9 @@ export default function Dashboard() {
             <p className="font-black text-slate-800 text-sm leading-tight">{profile.name}</p>
             <p className="text-[10px] font-bold text-primary-500 uppercase tracking-widest">{profile.goal}</p>
           </div>
-          <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center border border-slate-200">
+          <button onClick={() => setActiveTab('profile')} className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center border border-slate-200 hover:bg-slate-200 transition-all cursor-pointer">
             <User size={18} className="text-slate-400" />
-          </div>
+          </button>
         </div>
       </header>
 
@@ -309,8 +309,8 @@ export default function Dashboard() {
           </div>
         </nav>
 
-        <div className="p-4 m-4 mt-auto rounded-3xl bg-slate-50/50 border border-slate-100 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-white p-1 shadow-sm border border-slate-200 shrink-0">
+        <button onClick={() => setActiveTab('profile')} className="p-4 m-4 mt-auto rounded-3xl bg-slate-50/50 border border-slate-100 flex items-center gap-3 text-left hover:bg-slate-100 transition-all cursor-pointer group">
+          <div className="w-10 h-10 rounded-full bg-white p-1 shadow-sm border border-slate-200 shrink-0 group-hover:scale-105 transition-all">
             <div className="w-full h-full bg-slate-100 rounded-full flex items-center justify-center">
               <User size={18} className="text-slate-400" />
             </div>
@@ -319,7 +319,7 @@ export default function Dashboard() {
             <p className="font-black text-slate-800 text-base lg:text-lg leading-tight truncate">{profile.name}</p>
             <p className="text-xs lg:text-sm font-bold text-primary-500 truncate">{profile.goal}</p>
           </div>
-        </div>
+        </button>
       </aside>
 
       {/* MAIN CONTENT */}
@@ -587,6 +587,83 @@ export default function Dashboard() {
                         );
                       })}
                     </div>
+                  </div>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* USER PROFILE & HISTORY */}
+              {activeTab === 'profile' && (
+                <motion.div key="profile" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-6">
+                  <div className="glass-panel p-6 lg:p-8 bg-white">
+                    <div className="flex items-center gap-5 lg:gap-6 mb-8">
+                      <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-slate-100 flex items-center justify-center border-4 border-white shadow-lg shrink-0">
+                        <User size={40} className="text-slate-400" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl lg:text-3xl font-black text-slate-800 leading-tight">{profile.name}</h3>
+                        <p className="text-primary-600 font-bold uppercase tracking-wider text-xs lg:text-sm mt-1">{profile.goal}</p>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4 mb-8">
+                      <div className="bg-slate-50 p-4 rounded-xl lg:rounded-2xl border border-slate-100">
+                        <p className="text-slate-400 text-[10px] lg:text-xs font-bold uppercase tracking-widest mb-1">Age</p>
+                        <p className="text-xl lg:text-2xl font-black text-slate-800">{profile.age}</p>
+                      </div>
+                      <div className="bg-slate-50 p-4 rounded-xl lg:rounded-2xl border border-slate-100">
+                        <p className="text-slate-400 text-[10px] lg:text-xs font-bold uppercase tracking-widest mb-1">Weight</p>
+                        <p className="text-xl lg:text-2xl font-black text-slate-800">{profile.weight} <span className="text-sm font-medium text-slate-400">kg</span></p>
+                      </div>
+                      <div className="bg-slate-50 p-4 rounded-xl lg:rounded-2xl border border-slate-100">
+                        <p className="text-slate-400 text-[10px] lg:text-xs font-bold uppercase tracking-widest mb-1">Height</p>
+                        <p className="text-xl lg:text-2xl font-black text-slate-800">{profile.height} <span className="text-sm font-medium text-slate-400">cm</span></p>
+                      </div>
+                      <div className="bg-slate-50 p-4 rounded-xl lg:rounded-2xl border border-slate-100">
+                        <p className="text-slate-400 text-[10px] lg:text-xs font-bold uppercase tracking-widest mb-1">BMI</p>
+                        <p className="text-xl lg:text-2xl font-black text-slate-800">{plan.user_metrics.bmi}</p>
+                      </div>
+                    </div>
+
+                    <h4 className="text-lg lg:text-xl font-black mb-4 text-slate-800 flex items-center gap-2">
+                      <History size={20} className="text-primary-500" />
+                      Workout History
+                    </h4>
+                    
+                    <div className="space-y-3 mb-8">
+                      {historyData.length === 0 ? (
+                        <div className="text-center p-6 bg-slate-50 rounded-xl border border-slate-100">
+                          <p className="text-slate-500 font-bold">No workouts completed yet.</p>
+                          <p className="text-slate-400 text-sm mt-1">Head to the dashboard to start a session!</p>
+                        </div>
+                      ) : (
+                        historyData.map((session, idx) => (
+                          <div key={idx} className="flex justify-between items-center p-4 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-sm transition-all">
+                            <div className="flex items-center gap-3 lg:gap-4">
+                              <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                                <CheckCircle2 size={20} className="lg:w-6 lg:h-6" />
+                              </div>
+                              <div>
+                                <p className="font-bold text-slate-800 text-sm lg:text-base">Completed Session</p>
+                                <p className="text-[10px] lg:text-xs text-slate-500 font-bold uppercase tracking-wider mt-0.5">{session.name} • Strength</p>
+                              </div>
+                            </div>
+                            <div className="text-right">
+                              <p className="font-black text-primary-600 text-base lg:text-lg">{session.calories} <span className="text-xs font-bold text-primary-400">kcal</span></p>
+                              <p className="text-[10px] lg:text-xs text-slate-400 font-bold uppercase">Burned</p>
+                            </div>
+                          </div>
+                        ))
+                      )}
+                    </div>
+
+                    <button 
+                      onClick={() => { setProfile(null); window.location.reload(); }} 
+                      className="w-full bg-red-50 text-red-600 border border-red-100 hover:bg-red-500 hover:text-white p-4 rounded-xl lg:rounded-2xl font-bold transition-all flex justify-center items-center gap-2 shadow-sm group"
+                    >
+                      <LogOut size={18} className="group-hover:-translate-x-1 transition-transform" />
+                      Sign Out & Reset Profile
+                    </button>
                   </div>
                 </motion.div>
               )}
