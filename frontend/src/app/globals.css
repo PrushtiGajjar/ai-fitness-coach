@@ -17,15 +17,7 @@
   --color-slate-50: #f8fafc;
 }
 
-html {
-  font-size: 37.5%;
-}
 
-@media (min-width: 768px) {
-  html {
-    font-size: 75%;
-  }
-}
 
 body {
   background-color: var(--color-slate-50);
