@@ -269,15 +269,15 @@ export default function Dashboard() {
       </nav>
 
       {/* DESKTOP SIDEBAR */}
-      <aside className="hidden lg:flex w-[25rem] shrink-0 flex-col relative z-20 glass-panel m-6 mr-0 overflow-y-auto bg-white border-slate-100 shadow-sm">
-        <div className="p-8 flex items-center gap-4">
+      <aside className="hidden lg:flex w-72 shrink-0 flex-col relative z-20 glass-panel m-6 mr-0 overflow-y-auto bg-white border-slate-100 shadow-sm">
+        <div className="p-6 lg:p-8 flex items-center gap-3">
           <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-2xl bg-primary-600 flex items-center justify-center font-bold text-xl lg:text-2xl text-white shadow-[0_4px_15px_rgba(37,99,235,0.3)]">
             <Activity size={24} />
           </div>
           <h2 className="text-2xl lg:text-3xl font-black tracking-tighter text-slate-800">FitAI</h2>
         </div>
 
-        <nav className="flex-1 px-4 space-y-2 mt-4">
+        <nav className="flex-1 px-4 space-y-2 mt-2">
           {[
             { id: 'home', icon: Home, label: 'Dashboard' },
             { id: 'analytics', icon: BarChart2, label: 'Analytics' },
@@ -287,51 +287,51 @@ export default function Dashboard() {
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id as any)}
-              className={`w-full flex items-center gap-4 px-6 py-4 rounded-2xl transition-all duration-300 font-bold text-lg ${
+              className={`w-full flex items-center gap-4 px-5 py-3 rounded-2xl transition-all duration-300 font-bold text-base ${
                 activeTab === item.id 
                 ? 'bg-primary-50 text-primary-600 shadow-sm border border-primary-100' 
                 : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50/50'
               }`}
             >
-              <item.icon size={24} className={activeTab === item.id ? "text-primary-500" : ""} />
+              <item.icon size={20} className={activeTab === item.id ? "text-primary-500" : ""} />
               {item.label}
             </button>
           ))}
           
-          <div className="pt-8">
+          <div className="pt-6">
             <button 
               onClick={() => setActiveTab('workout')}
-              className="w-full glass-button flex justify-between items-center py-5 px-6"
+              className="w-full glass-button flex justify-between items-center py-4 px-5"
             >
-              <span className="flex items-center gap-3 text-lg"><Dumbbell size={24} /> Start Session</span>
-              <ChevronRight size={24} />
+              <span className="flex items-center gap-3 text-base"><Dumbbell size={20} /> Start Session</span>
+              <ChevronRight size={20} />
             </button>
           </div>
         </nav>
 
-        <div className="p-6 m-4 mt-auto rounded-3xl bg-slate-50/50 border border-slate-100 flex items-center gap-4">
-          <div className="w-12 h-12 rounded-full bg-white p-1 shadow-sm border border-slate-200">
+        <div className="p-4 m-4 mt-auto rounded-3xl bg-slate-50/50 border border-slate-100 flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-white p-1 shadow-sm border border-slate-200 shrink-0">
             <div className="w-full h-full bg-slate-100 rounded-full flex items-center justify-center">
-              <User size={20} className="text-slate-400" />
+              <User size={18} className="text-slate-400" />
             </div>
           </div>
-          <div>
-            <p className="font-black text-slate-800 text-lg lg:text-xl leading-tight">{profile.name}</p>
-            <p className="text-sm lg:text-base font-bold text-primary-500">{profile.goal}</p>
+          <div className="overflow-hidden">
+            <p className="font-black text-slate-800 text-base lg:text-lg leading-tight truncate">{profile.name}</p>
+            <p className="text-xs lg:text-sm font-bold text-primary-500 truncate">{profile.goal}</p>
           </div>
         </div>
       </aside>
 
       {/* MAIN CONTENT */}
       <main className="flex-1 relative lg:overflow-y-auto w-full pb-24 lg:pb-0">
-        <div className="max-w-full lg:max-w-6xl mx-auto px-4 md:px-6 lg:px-10 py-6 lg:py-10 relative z-10">
+        <div className="max-w-full lg:max-w-5xl mx-auto px-4 md:px-6 lg:px-8 py-6 lg:py-8 relative z-10">
           
-          <header className="flex justify-between items-end mb-12">
+          <header className="flex justify-between items-end mb-8 lg:mb-10">
             <div>
-              <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl lg:text-6xl font-black mb-2 lg:mb-4 tracking-tight text-slate-800 drop-shadow-sm">
+              <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-3xl lg:text-4xl font-black mb-1 lg:mb-2 tracking-tight text-slate-800 drop-shadow-sm">
                 Welcome back, <span className="text-primary-600">{profile.name}</span>
               </motion.h1>
-              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }} className="text-slate-600 text-xl lg:text-2xl font-bold">
+              <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }} className="text-slate-600 text-lg lg:text-xl font-bold">
                 Your personalized wellness plan for today is ready.
               </motion.p>
             </div>
@@ -339,7 +339,7 @@ export default function Dashboard() {
 
           {!plan ? (
             <div className="h-64 flex flex-col items-center justify-center glass-panel bg-white border border-slate-100">
-              <div className="w-12 h-12 border-4 border-slate-200 border-t-primary-500 rounded-full animate-spin mb-4"></div>
+              <div className="w-10 h-10 border-4 border-slate-200 border-t-primary-500 rounded-full animate-spin mb-4"></div>
               <p className="text-slate-500 font-bold tracking-widest text-sm uppercase">Curating your plan...</p>
             </div>
           ) : (
@@ -347,58 +347,58 @@ export default function Dashboard() {
               
               {/* HOME - DASHBOARD */}
               {activeTab === 'home' && (
-                <motion.div key="home" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-8">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="glass-panel p-8 relative overflow-hidden group bg-white border border-slate-100 flex flex-col justify-center">
-                      <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 group-hover:scale-110 transition-all duration-500 text-slate-800"><Target size={60}/></div>
-                      <p className="text-slate-500 font-black text-lg uppercase tracking-wider mb-2">Your Health Score</p>
-                      <h3 className="text-7xl font-black text-slate-800 tracking-tighter">{plan.user_metrics.bmi}</h3>
-                      <div className="mt-6 inline-flex items-center gap-2 bg-primary-50 text-primary-600 px-4 py-2 rounded-full text-base font-black border border-primary-100 w-fit">
-                        <CheckCircle2 size={20}/> {plan.user_metrics.category}
+                <motion.div key="home" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div className="glass-panel p-6 relative overflow-hidden group bg-white border border-slate-100 flex flex-col justify-center">
+                      <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 group-hover:scale-110 transition-all duration-500 text-slate-800"><Target size={48}/></div>
+                      <p className="text-slate-500 font-black text-sm uppercase tracking-wider mb-2">Your Health Score</p>
+                      <h3 className="text-5xl font-black text-slate-800 tracking-tighter">{plan.user_metrics.bmi}</h3>
+                      <div className="mt-4 inline-flex items-center gap-2 bg-primary-50 text-primary-600 px-3 py-1.5 rounded-full text-sm font-black border border-primary-100 w-fit">
+                        <CheckCircle2 size={16}/> {plan.user_metrics.category}
                       </div>
                     </div>
                     
-                    <div className="glass-panel p-10 md:col-span-2 flex items-center bg-white border border-slate-100">
-                      <div className="flex gap-8 items-start">
-                        <div className="p-5 bg-emerald-50 border border-emerald-100 rounded-3xl text-emerald-500 shadow-sm shrink-0">
-                          <Activity size={40} />
+                    <div className="glass-panel p-6 md:p-8 md:col-span-2 flex items-center bg-white border border-slate-100">
+                      <div className="flex gap-6 items-start">
+                        <div className="p-4 bg-emerald-50 border border-emerald-100 rounded-2xl text-emerald-500 shadow-sm shrink-0">
+                          <Activity size={32} />
                         </div>
                         <div>
-                          <p className="text-slate-500 font-black text-lg uppercase tracking-wider mb-4">What You Need To Do</p>
-                          <h3 className="text-3xl font-black leading-tight text-slate-800">{plan.diet_suggestion}</h3>
+                          <p className="text-slate-500 font-black text-sm uppercase tracking-wider mb-2 lg:mb-3">What You Need To Do</p>
+                          <h3 className="text-2xl font-black leading-tight text-slate-800">{plan.diet_suggestion}</h3>
                         </div>
                       </div>
                     </div>
                   </div>
 
                   {/* RICH MEDIA WORKOUT CARDS */}
-                  <div className="mt-14">
-                    <h3 className="text-5xl font-black mb-8 flex items-center gap-4 text-slate-800 drop-shadow-sm">
+                  <div className="mt-10 lg:mt-12">
+                    <h3 className="text-3xl lg:text-4xl font-black mb-6 flex items-center gap-3 text-slate-800 drop-shadow-sm">
                       Your Daily Workouts 
-                      <span className="bg-primary-100 text-primary-700 px-5 py-2 text-xl rounded-full font-black tracking-tight">
+                      <span className="bg-primary-100 text-primary-700 px-4 py-1.5 text-base lg:text-lg rounded-full font-black tracking-tight">
                         {plan.workout_schedule["Monday"].type}
                       </span>
                     </h3>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                       {plan.workout_schedule["Monday"].exercises.map((ex: string, i: number) => {
                         const exInfo = getExerciseInfo(ex);
                         return (
                           <div key={i} onClick={() => setSelectedExercise(exInfo)} className="cursor-pointer glass-panel overflow-hidden bg-white group hover:shadow-[0_20px_50px_-10px_rgba(59,130,246,0.15)] transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-primary-100">
-                            <div className="h-48 overflow-hidden relative">
+                            <div className="h-40 overflow-hidden relative">
                               <img src={exInfo.img} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt={exInfo.name} />
-                              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-slate-800 shadow-sm">
+                              <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-bold text-slate-800 shadow-sm">
                                 {i + 1}
                               </div>
                             </div>
-                            <div className="p-6">
-                              <h4 className="font-black text-2xl text-slate-800 mb-2">{exInfo.name}</h4>
-                              <p className="text-slate-500 text-base font-bold uppercase tracking-wider mb-4">{exInfo.muscle}</p>
+                            <div className="p-5">
+                              <h4 className="font-black text-xl text-slate-800 mb-1">{exInfo.name}</h4>
+                              <p className="text-slate-500 text-xs font-bold uppercase tracking-wider mb-3">{exInfo.muscle}</p>
                               
-                              <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
-                                <p className="text-base text-slate-700 font-bold flex gap-3">
-                                  <Dumbbell size={20} className="text-primary-500 shrink-0 mt-0.5" />
-                                  <span>{getExerciseSuggestion(ex)}</span>
+                              <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
+                                <p className="text-sm text-slate-700 font-bold flex gap-2">
+                                  <Dumbbell size={16} className="text-primary-500 shrink-0 mt-0.5" />
+                                  <span className="line-clamp-2">{getExerciseSuggestion(ex)}</span>
                                 </p>
                               </div>
                             </div>
@@ -412,13 +412,13 @@ export default function Dashboard() {
 
               {/* ANALYTICS */}
               {activeTab === 'analytics' && (
-                <motion.div key="analytics" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-8">
-                  <div className="glass-panel p-10 bg-white">
-                    <h3 className="text-3xl font-bold mb-2 text-slate-800">Progress Tracking</h3>
-                    <p className="text-slate-500 mb-10 text-lg">Your caloric expenditure and performance visualized over time.</p>
-                    <div className="h-[400px] w-full">
+                <motion.div key="analytics" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-6">
+                  <div className="glass-panel p-6 lg:p-8 bg-white">
+                    <h3 className="text-2xl lg:text-3xl font-bold mb-2 text-slate-800">Progress Tracking</h3>
+                    <p className="text-slate-500 mb-8 text-base lg:text-lg">Your caloric expenditure and performance visualized over time.</p>
+                    <div className="h-[300px] lg:h-[400px] w-full">
                       {historyData.length === 0 ? (
-                        <div className="w-full h-full flex items-center justify-center text-slate-400 font-medium text-lg border-2 border-dashed border-slate-300 rounded-3xl">
+                        <div className="w-full h-full flex items-center justify-center text-slate-400 font-medium text-base border-2 border-dashed border-slate-300 rounded-3xl">
                           Complete a workout to see stats
                         </div>
                       ) : (
@@ -451,86 +451,86 @@ export default function Dashboard() {
 
               {/* DIET PLAN HUB */}
               {activeTab === 'diet' && (
-                <motion.div key="diet" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-8">
-                  <div className="flex flex-col md:flex-row justify-between md:items-end gap-4 mb-8">
+                <motion.div key="diet" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-6">
+                  <div className="flex flex-col md:flex-row justify-between md:items-end gap-3 mb-6 lg:mb-8">
                     <div>
-                      <h3 className="text-3xl lg:text-4xl font-black mb-3 flex flex-wrap items-center gap-4 text-slate-800 drop-shadow-sm">
+                      <h3 className="text-2xl lg:text-3xl font-black mb-2 flex flex-wrap items-center gap-3 text-slate-800 drop-shadow-sm">
                         Today's Meal Plan
-                        <span className="bg-emerald-100 text-emerald-600 px-4 py-1.5 text-sm rounded-full uppercase font-black border border-emerald-200">2,400 kcal Goal</span>
+                        <span className="bg-emerald-100 text-emerald-600 px-3 py-1 text-xs rounded-full uppercase font-black border border-emerald-200">2,400 kcal Goal</span>
                       </h3>
-                      <p className="text-slate-600 text-lg lg:text-xl font-bold">Structured nutrition to fuel your performance.</p>
+                      <p className="text-slate-600 text-base lg:text-lg font-bold">Structured nutrition to fuel your performance.</p>
                     </div>
                     
-                    <button onClick={() => fileInputRef.current?.click()} className="bg-white border-2 border-slate-200 hover:border-primary-500 hover:text-primary-600 text-slate-600 px-6 py-3 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all shadow-sm w-full md:w-auto">
-                      <Camera size={20} />
+                    <button onClick={() => fileInputRef.current?.click()} className="bg-white border-2 border-slate-200 hover:border-primary-500 hover:text-primary-600 text-slate-600 px-5 py-2.5 rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-sm w-full md:w-auto text-sm">
+                      <Camera size={18} />
                       Scan Food
                     </button>
                     <input type="file" accept="image/*" className="hidden" ref={fileInputRef} onChange={handleImageUpload} />
                   </div>
 
                   {dietScanning && (
-                    <div className="glass-panel p-8 flex flex-col items-center justify-center bg-white border border-slate-100">
-                      <div className="w-12 h-12 border-4 border-slate-200 border-t-primary-500 rounded-full animate-spin mb-4"></div>
-                      <p className="text-slate-600 font-bold tracking-widest text-sm uppercase">Analyzing your food...</p>
+                    <div className="glass-panel p-6 flex flex-col items-center justify-center bg-white border border-slate-100">
+                      <div className="w-10 h-10 border-4 border-slate-200 border-t-primary-500 rounded-full animate-spin mb-3"></div>
+                      <p className="text-slate-600 font-bold tracking-widest text-xs uppercase">Analyzing your food...</p>
                     </div>
                   )}
 
                   {dietResult && !dietScanning && (
-                    <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="glass-panel bg-white p-8 mb-8 border-2 border-primary-100 shadow-[0_10px_30px_rgba(59,130,246,0.1)] relative overflow-hidden">
-                      <div className="absolute top-0 right-0 bg-primary-500 text-white px-4 py-1 rounded-bl-2xl font-bold text-sm">Scan Result</div>
-                      <h4 className="text-3xl font-black text-slate-800 mb-6 capitalize flex items-center gap-3">
-                        <CheckCircle2 className="text-emerald-500" size={32} />
+                    <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="glass-panel bg-white p-6 mb-6 border-2 border-primary-100 shadow-[0_10px_30px_rgba(59,130,246,0.1)] relative overflow-hidden">
+                      <div className="absolute top-0 right-0 bg-primary-500 text-white px-3 py-1 rounded-bl-xl font-bold text-xs">Scan Result</div>
+                      <h4 className="text-2xl font-black text-slate-800 mb-4 capitalize flex items-center gap-2">
+                        <CheckCircle2 className="text-emerald-500" size={24} />
                         {dietResult.food_name}
                       </h4>
                       
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                        <div className="bg-slate-50 p-5 rounded-2xl border border-slate-100">
-                          <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Calories</p>
-                          <p className="text-2xl font-black text-slate-800">{dietResult.calories} <span className="text-sm font-medium text-slate-400">kcal</span></p>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+                        <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                          <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Calories</p>
+                          <p className="text-xl font-black text-slate-800">{dietResult.calories} <span className="text-xs font-medium text-slate-400">kcal</span></p>
                         </div>
-                        <div className="bg-primary-50 p-5 rounded-2xl border border-primary-100">
-                          <p className="text-primary-600 text-xs font-bold uppercase tracking-widest mb-1">Protein</p>
-                          <p className="text-2xl font-black text-primary-700">{dietResult.protein_g} <span className="text-sm font-medium">g</span></p>
+                        <div className="bg-primary-50 p-4 rounded-xl border border-primary-100">
+                          <p className="text-primary-600 text-[10px] font-bold uppercase tracking-widest mb-1">Protein</p>
+                          <p className="text-xl font-black text-primary-700">{dietResult.protein_g} <span className="text-xs font-medium">g</span></p>
                         </div>
-                        <div className="bg-slate-50 p-5 rounded-2xl border border-slate-100">
-                          <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Carbs</p>
-                          <p className="text-2xl font-black text-slate-800">{dietResult.carbs_g} <span className="text-sm font-medium text-slate-400">g</span></p>
+                        <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                          <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Carbs</p>
+                          <p className="text-xl font-black text-slate-800">{dietResult.carbs_g} <span className="text-xs font-medium text-slate-400">g</span></p>
                         </div>
-                        <div className="bg-slate-50 p-5 rounded-2xl border border-slate-100">
-                          <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Fats</p>
-                          <p className="text-2xl font-black text-slate-800">{dietResult.fats_g} <span className="text-sm font-medium text-slate-400">g</span></p>
+                        <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                          <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Fats</p>
+                          <p className="text-xl font-black text-slate-800">{dietResult.fats_g} <span className="text-xs font-medium text-slate-400">g</span></p>
                         </div>
                       </div>
-                      <div className="bg-emerald-50 text-emerald-700 p-4 rounded-xl font-medium flex gap-3 items-center">
-                        <Leaf size={20} /> {dietResult.assessment}
+                      <div className="bg-emerald-50 text-emerald-700 p-3 rounded-xl font-medium flex gap-2 items-center text-sm">
+                        <Leaf size={16} /> {dietResult.assessment}
                       </div>
                     </motion.div>
                   )}
 
-                  <div className="flex gap-4 mb-6">
-                    <button onClick={() => setDietPref('Non-Veg')} className={`px-6 py-2 rounded-full font-bold transition-all ${dietPref === 'Non-Veg' ? 'bg-primary-500 text-white shadow-md' : 'bg-white text-slate-500 border border-slate-200 hover:bg-slate-50'}`}>Non-Veg</button>
-                    <button onClick={() => setDietPref('Veg')} className={`px-6 py-2 rounded-full font-bold transition-all ${dietPref === 'Veg' ? 'bg-emerald-500 text-white shadow-md' : 'bg-white text-slate-500 border border-slate-200 hover:bg-slate-50'}`}>Vegetarian</button>
+                  <div className="flex gap-3 mb-5">
+                    <button onClick={() => setDietPref('Non-Veg')} className={`px-5 py-1.5 text-sm rounded-full font-bold transition-all ${dietPref === 'Non-Veg' ? 'bg-primary-500 text-white shadow-md' : 'bg-white text-slate-500 border border-slate-200 hover:bg-slate-50'}`}>Non-Veg</button>
+                    <button onClick={() => setDietPref('Veg')} className={`px-5 py-1.5 text-sm rounded-full font-bold transition-all ${dietPref === 'Veg' ? 'bg-emerald-500 text-white shadow-md' : 'bg-white text-slate-500 border border-slate-200 hover:bg-slate-50'}`}>Vegetarian</button>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     {(dietPref === 'Veg' ? DIET_PLAN_VEG : DIET_PLAN_NON_VEG).map((meal) => (
                       <div key={meal.id} className="glass-panel overflow-hidden bg-white flex hover:shadow-[0_15px_30px_rgba(0,0,0,0.06)] transition-all">
-                        <div className="w-1/3 h-full min-h-[160px] relative">
+                        <div className="w-1/3 h-full min-h-[140px] relative">
                           <img src={meal.img} alt={meal.label} className="absolute inset-0 w-full h-full object-cover" />
                         </div>
-                        <div className="w-2/3 p-6 flex flex-col justify-center">
+                        <div className="w-2/3 p-5 flex flex-col justify-center">
                           <div className="flex justify-between items-center mb-2">
-                            <span className="flex items-center gap-2 text-primary-600 font-black text-base uppercase tracking-wider">
-                              <meal.icon size={20} /> {meal.label}
+                            <span className="flex items-center gap-1.5 text-primary-600 font-black text-sm uppercase tracking-wider">
+                              <meal.icon size={16} /> {meal.label}
                             </span>
-                            <span className="text-slate-500 font-bold text-base">{meal.time}</span>
+                            <span className="text-slate-500 font-bold text-sm">{meal.time}</span>
                           </div>
-                          <h4 className="text-2xl font-black text-slate-800 mb-5 leading-tight">{meal.meal}</h4>
-                          <div className="flex gap-6">
-                            <div className="text-base"><span className="font-black text-slate-800 text-lg">{meal.cals}</span> <span className="text-slate-500 font-bold">kcal</span></div>
-                            <div className="text-base"><span className="font-black text-slate-800 text-lg">{meal.p}g</span> <span className="text-slate-500 font-bold">P</span></div>
-                            <div className="text-base"><span className="font-black text-slate-800 text-lg">{meal.c}g</span> <span className="text-slate-500 font-bold">C</span></div>
-                            <div className="text-base"><span className="font-black text-slate-800 text-lg">{meal.f}g</span> <span className="text-slate-500 font-bold">F</span></div>
+                          <h4 className="text-xl font-black text-slate-800 mb-3 leading-tight">{meal.meal}</h4>
+                          <div className="flex gap-4">
+                            <div className="text-sm"><span className="font-black text-slate-800 text-base">{meal.cals}</span> <span className="text-slate-500 font-bold">kcal</span></div>
+                            <div className="text-sm"><span className="font-black text-slate-800 text-base">{meal.p}g</span> <span className="text-slate-500 font-bold">P</span></div>
+                            <div className="text-sm"><span className="font-black text-slate-800 text-base">{meal.c}g</span> <span className="text-slate-500 font-bold">C</span></div>
+                            <div className="text-sm"><span className="font-black text-slate-800 text-base">{meal.f}g</span> <span className="text-slate-500 font-bold">F</span></div>
                           </div>
                         </div>
                       </div>
@@ -541,47 +541,47 @@ export default function Dashboard() {
 
               {/* EXERCISE GUIDE */}
               {activeTab === 'guide' && (
-                <motion.div key="guide" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-8">
-                  <div className="glass-panel p-10 bg-white">
-                    <h3 className="text-3xl font-bold mb-4 flex items-center gap-4 text-slate-800">
+                <motion.div key="guide" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-6">
+                  <div className="glass-panel p-6 lg:p-8 bg-white">
+                    <h3 className="text-2xl lg:text-3xl font-bold mb-3 flex items-center gap-3 text-slate-800">
                       Exercise Guide Library
-                      <span className="bg-primary-100 text-primary-600 px-3 py-1 text-xs rounded-full uppercase font-bold border border-primary-200">Form & Technique</span>
+                      <span className="bg-primary-100 text-primary-600 px-2 py-0.5 text-[10px] rounded-full uppercase font-bold border border-primary-200">Form & Technique</span>
                     </h3>
-                    <p className="text-slate-500 mb-6 text-lg max-w-2xl">Learn the correct form for fundamental movements. Good form prevents injury and maximizes muscle engagement.</p>
+                    <p className="text-slate-500 mb-5 text-base max-w-2xl">Learn the correct form for fundamental movements. Good form prevents injury and maximizes muscle engagement.</p>
                     
-                    <div className="mb-8">
+                    <div className="mb-6">
                       <input 
                         type="text" 
                         placeholder="Search for an exercise (e.g., Squat, Push-up)..." 
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full bg-slate-50 border-2 border-slate-100 focus:border-primary-400 focus:bg-white p-4 rounded-2xl text-lg outline-none transition-all duration-300 shadow-sm"
+                        className="w-full bg-slate-50 border-2 border-slate-100 focus:border-primary-400 focus:bg-white p-3 rounded-xl text-base outline-none transition-all duration-300 shadow-sm"
                       />
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       {Object.keys(EXERCISE_LIBRARY).filter(key => key.toLowerCase().includes(searchQuery.toLowerCase())).map((exKey, index) => {
                         const ex = EXERCISE_LIBRARY[exKey];
                         return (
-                          <div key={index} onClick={() => setSelectedExercise({ name: exKey, ...ex })} className="cursor-pointer glass-panel p-6 bg-white flex flex-col hover:shadow-[0_20px_50px_-10px_rgba(59,130,246,0.15)] transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-primary-100 group">
-                            <div className="w-full h-56 rounded-2xl overflow-hidden mb-6">
+                          <div key={index} onClick={() => setSelectedExercise({ name: exKey, ...ex })} className="cursor-pointer glass-panel p-5 bg-white flex flex-col hover:shadow-[0_20px_50px_-10px_rgba(59,130,246,0.15)] transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-primary-100 group">
+                            <div className="w-full h-48 rounded-xl overflow-hidden mb-4">
                               <img src={ex.img} alt={exKey} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                             </div>
-                            <div className="flex justify-between items-start mb-4">
-                              <h4 className="text-3xl font-black text-slate-800">{exKey}</h4>
-                              <span className="bg-slate-100 text-slate-600 px-4 py-2 text-sm rounded-full font-bold uppercase">{ex.difficulty}</span>
+                            <div className="flex justify-between items-start mb-3">
+                              <h4 className="text-2xl font-black text-slate-800">{exKey}</h4>
+                              <span className="bg-slate-100 text-slate-600 px-3 py-1 text-[10px] rounded-full font-bold uppercase">{ex.difficulty}</span>
                             </div>
-                            <p className="text-primary-600 font-bold uppercase tracking-widest text-base mb-6">{ex.muscle}</p>
-                            <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100 flex-1">
-                              <ul className="space-y-4">
+                            <p className="text-primary-600 font-bold uppercase tracking-widest text-xs mb-4">{ex.muscle}</p>
+                            <div className="bg-slate-50 rounded-xl p-4 border border-slate-100 flex-1">
+                              <ul className="space-y-3">
                                 {ex.instructions.slice(0, 2).map((step, i) => (
-                                  <li key={i} className="flex gap-4 text-slate-600 font-medium text-base">
-                                    <span className="text-primary-500 font-bold text-lg">{i+1}.</span>
+                                  <li key={i} className="flex gap-3 text-slate-600 font-medium text-sm">
+                                    <span className="text-primary-500 font-bold text-base">{i+1}.</span>
                                     <span className="line-clamp-2">{step}</span>
                                   </li>
                                 ))}
                               </ul>
-                              <p className="text-primary-500 text-sm font-bold mt-4 flex items-center gap-2">Click to view full details <ChevronRight size={16}/></p>
+                              <p className="text-primary-500 text-xs font-bold mt-3 flex items-center gap-1">Click to view full details <ChevronRight size={14}/></p>
                             </div>
                           </div>
                         );
