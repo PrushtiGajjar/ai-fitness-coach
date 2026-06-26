@@ -159,16 +159,24 @@ export default function Dashboard() {
     const msg = input;
     setMessages(prev => [...prev, {sender: "User", text: msg}]);
     setInput("");
-    try {
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8001";
-      const res = await fetch(`${API_URL}/api/chat`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({message: msg})
-      });
-      const data = await res.json();
-      setMessages(prev => [...prev, {sender: "AI", text: data.reply}]);
-    } catch (e) { console.error(e); }
+    
+    // Simulate AI thinking delay for the Vercel demo (since there is no real backend API)
+    setTimeout(() => {
+      const lowerMsg = msg.toLowerCase();
+      let reply = "I'm here to help you reach your goals! Remember to stay hydrated and stick to your workout plan.";
+      
+      if (lowerMsg.includes('hello') || lowerMsg.includes('hi ') || lowerMsg.trim() === 'hi') {
+        reply = `Hello ${profile?.name || 'there'}! Ready to crush today's goals?`;
+      } else if (lowerMsg.includes('diet') || lowerMsg.includes('food') || lowerMsg.includes('eat')) {
+        reply = "Nutrition is key! Stick to your macro goals today and make sure you're getting enough protein for recovery.";
+      } else if (lowerMsg.includes('workout') || lowerMsg.includes('exercise')) {
+        reply = "Consistency is what builds results. Your daily workout is ready in the dashboard whenever you are!";
+      } else if (lowerMsg.includes('tired') || lowerMsg.includes('sore') || lowerMsg.includes('pain')) {
+        reply = "Listen to your body. If you're feeling extremely sore, take a light active recovery day or focus on stretching.";
+      }
+      
+      setMessages(prev => [...prev, {sender: "AI", text: reply}]);
+    }, 1000);
   };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
